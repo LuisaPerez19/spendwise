@@ -1,0 +1,10 @@
+<h1>Welcome to Spend wise</h1>
+
+<div class= "list">
+  <ul data-controller="position">
+    <% @categories.each do |category| %>
+      <li><%= category.name %></li>
+      <%# <td><%= category.amount %>
+    <% end %>
+  </ul>
+</div>
