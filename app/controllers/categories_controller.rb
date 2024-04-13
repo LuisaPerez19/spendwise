@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @appointment.save
-      redirect_to appointments_path, notice: "Appointment was successfully created."
+      redirect_to categories_path, notice: "Category was successfully created."
       else
         render :new
     end

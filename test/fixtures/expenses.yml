@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  transaction: MyString
+  amount: 1
+  date: 2024-04-13 17:35:31
+  category: one
+  user: one
+
+two:
+  transaction: MyString
+  amount: 1
+  date: 2024-04-13 17:35:31
+  category: two
+  user: two
