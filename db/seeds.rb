@@ -9,13 +9,20 @@
 puts "Cleaning up database..."
 
 Category.destroy_all
+User.delete_all
 
-home = Category.create!(name: 'Home')
+user1 = User.create!(
+  email: "sam@myevent.com",
+  password: "123456",
+  password_confirmation: "123456"
+)
 
-food = Category.create!(name: 'Food')
+home = Category.create!(name: 'Home', user_id:user1)
 
-transport = Category.create!(name: 'Transport')
+food = Category.create!(name: 'Food', user_id:user1)
 
-going_out = Category.create!(name: 'Going out')
+transport = Category.create!(name: 'Transport', user_id:user1)
+
+going_out = Category.create!(name: 'Going out', user_id:user1)
 
 puts "finished..."
