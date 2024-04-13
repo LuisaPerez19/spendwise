@@ -1,0 +1,13 @@
+<div class="container">
+  <h1>Appointment</h1>
+
+  <%= simple_form_for [@patient, @appointment] do |f| %>
+  <%= f.hidden_field :patient_id, value: @patient.id  %>
+  <%= f.association :carer, label_method: :name, value_method: :id, include_blank: false %>
+  <%= f.association :administrator, label_method: :name, value_method: :id, include_blank: false %>
+  <%= f.input :appointment_date %>
+  <%= f.input :appointment_time %>
+  <%= f.submit "Book Now", class: "btn btn-primary submit-booking" %>
+<% end %>
+
+</div>

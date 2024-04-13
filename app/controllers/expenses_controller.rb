@@ -1,9 +1,10 @@
 class ExpensesController < ApplicationController
-  before_action :set_expense, only: [ :index, :show ]
+  # before_action :set_expense, only: [ :index, :show ]
   before_action :set_category, only: [ :new, :create ]
 
   def index
-    @expenses = current_user.expenses
+    @user = current_user
+    @expenses = @user.expenses
   end
 
   def show
@@ -26,16 +27,16 @@ class ExpensesController < ApplicationController
 
   private
 
-  def set_expense
-    @expense = Expense.find(params[:id])
-  end
+  # def set_expense
+  #   @expense = Expense.find(params[:expense_id])
+  # end
 
   def set_category
     @category = Category.find(params[:category_id])
   end
 
   def expense_params
-    params[:expense].permit(:transation, :amount, :date, :category_id, :user_id)
+    params[:expense].permit(:title, :amount, :date, :category_id, :user_id)
   end
 
 end
