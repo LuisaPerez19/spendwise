@@ -26,16 +26,16 @@ class CategoriesController < ApplicationController
     end
 
     def update
-       if @appointment.update(appointment_params)
-         redirect_to appointments_path, notice: "Appointment was successfully updated."
+       if @category.update(appointment_params)
+         redirect_to category_path, notice: "Category was successfully updated."
        else
          render :edit
        end
     end
 
     def destroy
-       @appointment.destroy
-       redirect_to appointments_path, notice: "Appointment was successfully destroyed."
+       @category.destroy
+       redirect_to category_path, notice: "Category was successfully destroyed."
     end
 
     private
