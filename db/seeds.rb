@@ -17,12 +17,12 @@ user1 = User.create!(
   password_confirmation: "123456"
 )
 
-home = Category.create!(name: 'Home', user_id:user1)
+home = Category.create!(name: 'Home', amount: 0, user_id:user1)
 
-food = Category.create!(name: 'Food', user_id:user1)
+food = Category.create!(name: 'Food',amount: 0, user_id:user1)
 
-transport = Category.create!(name: 'Transport', user_id:user1)
+transport = Category.create!(name: 'Transport',amount: 0,  user_id:user1)
 
-going_out = Category.create!(name: 'Going out', user_id:user1)
+going_out = Category.create!(name: 'Going out', amount: 0,  user_id:user1)
 
 puts "finished..."
