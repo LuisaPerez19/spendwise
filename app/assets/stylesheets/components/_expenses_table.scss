@@ -1,0 +1,28 @@
+.horizontal-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 8rem;
+  padding-top: 2rem;
+  }
+
+.table_title {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10rem;
+  font-weight: bold;
+  }
+
+.table_transaction{
+  margin-right: 11rem;
+}
+
+.table_amount{
+  margin-right: 15rem;
+}
+
+.table_date{
+  margin-right: 15rem;
+}
