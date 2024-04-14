@@ -10,7 +10,8 @@ class Category < ApplicationRecord
     self.amount ||= 0
   end
 
-  def update_category_amount_total
-    category.update(total_amount: category.sum(:amount))
+  def self.category_sum_amount
+    sum(:amount)
   end
+
 end
