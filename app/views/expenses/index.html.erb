@@ -1,14 +1,24 @@
 <h1>Hi <%= current_user.email %></h1>
 
-<div class= "list">
-  <ul data-controller="position">
-    <% @expenses.each do |expense| %>
-      <li class="category-item">
-        <span class="category-name"><%= expense.title %></span>
-        <span class="category-amount">£<%= expense.amount %></span>
-        <span class="category-amount"><%= expense.date.strftime("%d/%m/%y - %R") %></span>
-        <span class="category-amount"><%= expense.category.name %></span>
-      </li>
-    <% end %>
+<div>
+  <ul class="horizontal-list">
+
+      <li class="table_title table_transaction"> Transaction</li>
+      <li class="table_title table_amount"> Amount</li>
+      <li class="table_title table_date"> Date</li>
+      <li class="table_title"> Category</li>
   </ul>
 </div>
+
+<div class= "list">
+    <ul data-controller="position">
+      <% @expenses.each do |expense| %>
+        <li class="category-item">
+          <span class="category-name"><%= expense.title %></span>
+          <span class="category-amount">£<%= expense.amount %></span>
+          <span class="category-amount"><%= expense.date.strftime("%d/%m/%y - %R") %></span>
+          <span class="category-amount"><%= expense.category.name %></span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
