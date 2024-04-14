@@ -1,13 +1,15 @@
 <div class="container">
-  <h1>Appointment</h1>
+  <h1>New Transaction</h1>
 
-  <%= simple_form_for [@patient, @appointment] do |f| %>
-  <%= f.hidden_field :patient_id, value: @patient.id  %>
-  <%= f.association :carer, label_method: :name, value_method: :id, include_blank: false %>
-  <%= f.association :administrator, label_method: :name, value_method: :id, include_blank: false %>
-  <%= f.input :appointment_date %>
-  <%= f.input :appointment_time %>
-  <%= f.submit "Book Now", class: "btn btn-primary submit-booking" %>
+  <%= simple_form_for @expense do |f| %>
+  <%= f.hidden_field :user_id, value: current_user.id  %>
+  <%= f.input :title %>
+  <%= f.input :amount %>
+  <%= f.input :date %>
+  <%= f.association :category, label_method: :name, value_method: :id, include_blank: false %>
+
+  <%= f.submit "Submit now", class: "btn btn-primary" %>
+  <%= link_to 'Back to Expenses', expenses_path, class: 'btn btn-primary mt-4 back' %>
 <% end %>
 
 </div>

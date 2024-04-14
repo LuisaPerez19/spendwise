@@ -9,6 +9,6 @@ Rails.application.routes.draw do
     resources :expenses, only: [ :new, :create ]
   end
 
-  resources :expenses, only: [ :index, :show ]
+  resources :expenses
 
 end

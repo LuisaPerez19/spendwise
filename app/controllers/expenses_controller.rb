@@ -1,6 +1,5 @@
 class ExpensesController < ApplicationController
-  # before_action :set_expense, only: [ :index, :show ]
-  before_action :set_category, only: [ :new, :create ]
+  before_action :set_expense, only: [:show, :edit, :update, :destroy ]
 
   def index
     @user = current_user
@@ -16,8 +15,6 @@ class ExpensesController < ApplicationController
 
   def create
     @expense = Expense.new(expense_params)
-    @expense.user = current_user
-    @expense.category = Category.find(params[:category_id])
     if @expense.save
       redirect_to expenses_path, notice: "Expense was successfully created."
     else
@@ -25,15 +22,29 @@ class ExpensesController < ApplicationController
     end
   end
 
+  def edit
+
+  end
+
+  def update
+    if @expense.update(expense_params)
+      redirect_to expenses_path, notice: "Expense was successfully updated."
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @expense.destroy
+    redirect_to expenses_path, notice: "Expense was successfully deleted."
+  end
+
   private
 
-  # def set_expense
-  #   @expense = Expense.find(params[:expense_id])
-  # end
-
-  def set_category
-    @category = Category.find(params[:category_id])
+  def set_expense
+    @expense = Expense.find(params[:id])
   end
+
 
   def expense_params
     params[:expense].permit(:title, :amount, :date, :category_id, :user_id)

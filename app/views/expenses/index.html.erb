@@ -18,7 +18,12 @@
           <span class="category-amount">£<%= expense.amount %></span>
           <span class="category-amount"><%= expense.date.strftime("%d/%m/%y - %R") %></span>
           <span class="category-amount"><%= expense.category.name %></span>
+          <span class="category-amount"><%= link_to 'Edit', edit_expense_path(expense) %></span>
+          <span class="category-amount "><%= button_to 'Delete', expense_path(expense), method: :delete, data: { confirm: 'Are you sure?' },  class: 'btn' %></span>
+
         </li>
       <% end %>
     </ul>
   </div>
+
+  <%= link_to 'New Expense', new_expense_path  %>
