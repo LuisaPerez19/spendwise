@@ -20,15 +20,15 @@ user1 = User.create!(
 
 # puts "User created with ID: #{user1.id}"
 
-home = Category.create!(name: 'Home', amount: 0, user_id:user1)
+# home = Category.create!(name: 'Home', amount: 0, user_id:user1)
 
-food = Category.create!(name: 'Food',amount: 0, user_id:user1)
+# food = Category.create!(name: 'Food',amount: 0, user_id:user1)
 
-transport = Category.create!(name: 'Transport',amount: 0,  user_id:user1)
+# transport = Category.create!(name: 'Transport',amount: 0,  user_id:user1)
 
-going_out = Category.create!(name: 'Going out', amount: 0,  user_id:user1)
+# going_out = Category.create!(name: 'Going out', amount: 0,  user_id:user1)
 
-home = Category.create!(name: 'Home', amount: 0, user_id:user1)
+# home = Category.create!(name: 'Home', amount: 0, user_id:user1)
 
 # begin
 morissons = Expense.create!(
