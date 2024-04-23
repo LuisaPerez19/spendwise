@@ -6,6 +6,7 @@ class Category < ApplicationRecord
 
   def category_total
     expenses.map(&:amount).sum
+    # (&:amount)shorhand for  { |expense| expense.amount }
   end
 
   private

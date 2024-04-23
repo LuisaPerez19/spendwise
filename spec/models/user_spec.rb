@@ -9,6 +9,11 @@ describe User do
     )
     expect(user.id).not_to be_nil
     expect(user.categories.count).not_to be_zero
+  end
+end
+
+describe User do
+  it "checks email is valid" do
     user_two = User.new(
       email: "luisa@myevent.com",
       password: "123456",
