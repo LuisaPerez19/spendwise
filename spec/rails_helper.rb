@@ -2,6 +2,8 @@
 require 'spec_helper'
 require 'support/factory_bot'
 
+# Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
+
 
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
