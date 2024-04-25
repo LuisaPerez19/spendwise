@@ -3,25 +3,25 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
 
   before(:all) do
-    @user1 = create(:user)
+    @user_one = create(:user)
   end
 
   it "is valid with valid attributes" do
-    expect(@user1).to be_valid
+    expect(@user_one).to be_valid
   end
   it "seeds categories after creating an user" do
-    expect(@user1.id).not_to be_nil
-    expect(@user1.categories.count).not_to be_zero
+    expect(@user_one.id).not_to be_nil
+    expect(@user_one.categories.count).not_to be_zero
   end
 
   it "has a unique email" do
-    user2 = build(:user, email: "bob@gmail.com")
-    expect(user2).to_not be_valid
+    user_two = build(:user, email: "bob@gmail.com")
+    expect(user_two).to_not be_valid
   end
 
   it "is not valid without an email" do
-    user2 = build(:user, email: nil)
-    expect(user2).to_not be_valid
+    user_two = build(:user, email: nil)
+    expect(user_two).to_not be_valid
   end
 
 end
