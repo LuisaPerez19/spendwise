@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>New Category</h1>
+
+  <%= simple_form_for @category do |f| %>
+  <%= f.hidden_field :user_id, value: current_user.id  %>
+
+  <%= f.input :name %>
+  <%= f.hidden_field :amount, value: 0  %>
+  <%# <%= f.input :amount %>
+
+  <%= f.submit "Submit now", class: "btn btn-primary" %>
+  <%= link_to 'Back to Categories', categories_path, class: 'btn btn-primary mt-4 back' %>
+<% end %>
+
+</div>

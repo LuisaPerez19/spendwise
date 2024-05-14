@@ -6,6 +6,8 @@
       <li class="category-item">
         <span class="category-name"><%= category.name %></span>
         <span class="category-amount"><%= category.category_total %></span>
+         <span class="category-amount"><%= link_to 'Edit', edit_category_path(category) %></span>
+          <span class="category-amount "><%= button_to 'Delete', category_path(category), method: :delete, data: { confirm: 'Are you sure?' },  class: 'btn' %></span>
       </li>
     <% end %>
   </ul>
@@ -15,6 +17,7 @@
   <h1>Total Spent: £<%= Category.category_sum_amount %></h1>
 </div>
 
+<%= link_to 'New Category', new_category_path  %>
 <%# <%= image_tag "icon.png", alt: "Categories Icon" %>
 
 <%# <a href="https://www.freepik.com/icon/balanced-diet_6774898#fromView=search&page=1&position=73&uuid=a8be3c28-d9f4-4694-bdb1-2876523dd9f2">Icon by paulalee</a> %>
