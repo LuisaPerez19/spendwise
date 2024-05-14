@@ -33,9 +33,11 @@ RSpec.describe User, type: :model do
     expect(user_without_password).to_not be_valid
   end
 
-  it "has a minimum password length" do
-    user_with_short_password = build(:user, password: "123456")
-    expect(user_with_short_password).to_not be_valid
+  it "meets password complexity" do
+    user_with_the_right_password = build(:user, password: "123456
+    ", password_confirmation: "123456
+    ")
+    expect(user_with_the_right_password).to_not be_valid
   end
 
 end
