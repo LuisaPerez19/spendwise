@@ -2,7 +2,7 @@ class Category < ApplicationRecord
   belongs_to :user
   validates :name, :amount, presence: true
   has_many :expenses
-  before_create :initialize_total_amount
+  before_validation :initialize_total_amount
 
   def category_total
     expenses.map(&:amount).sum
