@@ -15,8 +15,8 @@ RSpec.describe User, type: :model do
     expect(@user_one.categories.count).not_to be_zero
   end
 
-  it "has a unique email" do
-    user_two = create(:user, email: "luisa@example.com")
+  it "is not valid with a duplicate email" do
+    user_two = build(:user, email: @user_one.email)
     puts user_two.inspect
     expect(user_two).to_not be_valid
   end
