@@ -1,0 +1,34 @@
+version: '3.8'
+services:
+  spendwise:
+    tty: true
+    stdin_open: true
+    platform: linux/x86_64
+    command: sh -c "sleep 2 && rm -f tmp/pids/server.pid && bundle install && yarn install && bundle exec rails db:migrate && ./bin/dev"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/app
+    env_file: ./.env
+    environment:
+      RAILS_ENV: development
+      DATABASE_HOST: database
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: spend
+      DISABLE_DATABASE_ENVIRONMENT_CHECK: 1
+      BIND: 0.0.0.0
+      DOCKER: 1
+    depends_on:
+      - database
+  database:
+    image: postgres:14.2-alpine3.15
+    volumes:
+      - ../db/spendwpg:/var/lib/postgresql/data
+    # env_file: ./.env
+    ports:
+      - '5431:5432'
+    environment:
+      POSTGRES_PASSWORD: spend
