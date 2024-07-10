@@ -20,7 +20,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_14_135553) do
     t.datetime "updated_at", null: false
     t.integer "amount"
     t.string "icon"
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.integer "Total_sum_amount"
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
