@@ -1,0 +1,10 @@
+<h1>Welcome, <%= @user.email %>!</h1>
+
+<h2>Your Recent Expenses</h2>
+<ul>
+  <% @expenses.each do |expense| %>
+    <li>
+      <%= expense.category.name %> - £<%= expense.amount %> on <%= expense.created_at.strftime("%B %d, %Y") %>
+    </li>
+  <% end %>
+</ul>
