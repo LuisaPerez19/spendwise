@@ -1,6 +1,37 @@
 <h1>Welcome, <%= @user.email %>!</h1>
 
+
+
+
+<div>
+  <%= form_tag dashboard_path, method: :get, class: "d-flex" do %>
+    <input type="date"
+          id="selected_date"
+          name="selected_date"
+          class="form-control"
+          value="<%= params[:selected_date] %>"
+          placeholder="Select a Date">
+    <input type="date"
+          id="selected_date"
+          name="selected_date"
+          class="form-control"
+          value="<%= params[:selected_date] %>"
+          placeholder="Select a Date">
+    <%= submit_tag "Search", class: "btn btn-primary" %>
+  <% end %>
+</div>
+
+
+
+
+
+
+<div class="total-expenses">
+  <p>Total Expenses: <%= @period_expenses %></p>
+</div>
+
 <h2>Your Recent Expenses</h2>
+
 <ul>
   <% @expenses.each do |expense| %>
     <li>
