@@ -4,12 +4,21 @@ class DashboardController < ApplicationController
     @user = current_user
     @expenses = @user.expenses.order(created_at: :desc)
 
-    selected_date = params[:selected_date].blank? ? Time.zone.now.to_date : Date.parse(params[:selected_date])
 
-    start_of_period = selected_date.beginning_of_month
-    end_of_period = selected_date.end_of_month
 
-    @period_expenses = Expense.where(date: start_of_period..end_of_period).sum(:amount)
+    start_date = Date.parse(params[:start_date]) rescue nil
+    end_date = Date.parse(params[:end_date]) rescue nil
+
+    @total_expenses = if start_date && end_date
+                        Expense.total_amount_between(start_date, end_date)
+                      else
+                        0
+                      end
+
+
+
+    # @total_expenses = Expense.total_amount_between(Date.new(2024, 7, 20), Date.new(2024, 7, 25))
+
 
     #total spend
     # Total earned

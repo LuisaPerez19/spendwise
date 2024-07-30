@@ -1,23 +1,25 @@
 <h1>Welcome, <%= @user.email %>!</h1>
 
 
+
 <div>
   <%= form_tag dashboard_path, method: :get, class: "d-flex" do %>
     <input type="date"
-          id="selected_date"
-          name="selected_date"
+          id="start_date"
+          name="start_date"
           class="form-control"
-          value="<%= params[:selected_date] %>"
-          placeholder="Select a Date">
+          value="<%= params[:start_date] || '' %>"
+          placeholder="Start Date">
     <input type="date"
-          id="selected_date"
-          name="selected_date"
+          id="end_date"
+          name="end_date"
           class="form-control"
-          value="<%= params[:selected_date] %>"
-          placeholder="Select a Date">
+          value="<%= params[:end_date] || '' %>"
+          placeholder="End Date">
     <%= submit_tag "Search", class: "btn btn-primary" %>
   <% end %>
 </div>
+
 
 <div class="container">
   <div class="row mt-5">
@@ -25,7 +27,7 @@
       <div class="card bg-light mb-3" style="width: 15rem;height: 120px;">
         <div class="card-body">
           <p class="card-text text-center">Total Expenses</p>
-          <p class="card-text text-center">£<%= @period_expenses %></p>
+          <p class="card-text text-center">£<%= @total_expenses %></p>
         </div>
       </div>
     </div>
