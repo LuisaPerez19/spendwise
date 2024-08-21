@@ -6,25 +6,32 @@ RSpec.describe Category, type: :model do
     let(:category) { create(:category) }
 
     it 'returns the sum of all expense amounts' do
-      create(:expense, category: category, amount: 100)
-      create(:expense, category: category, amount: 200)
-      create(:expense, category: category, amount: 150)
+      test_cases = [ [[100,200,150], 450], [[100, 0, 100, 100], 300] ]
 
-      # puts "Expense amounts: #{category.expenses.pluck(:amount)}"
+      test_cases.each do |amounts, total|
+        category = create(:category)
+        amounts.each {|amount| create(:expense, category:, amount:)}
+        category.reload
+        expect(category.category_total).to eq(total)
+      end
 
-      expect(category.category_total).to eq(450)
+      # puts "Expense amounts: #{category.expenses.pluck(:amount)
     end
   end
 
   describe '.category_sum_amount' do
     it 'returns the sum of amounts from all categories' do
-      create(:category, amount: 100)
-      create(:category, amount: 200)
-      create(:category, amount: 150)
-
-      expect(Category.category_sum_amount).to eq(450)
+      test_cases = [ [[100,200,150], 450], [[100, 0, 100, 100], 300] ]
+      test_cases.each do |amounts, total|
+        amounts.each {|amount| create(:category, amount:)}
+        expect(Category.category_sum_amount).to eq(total)
+        Category.destroy_all
+      end
     end
   end
+
+
+
 
     before(:all) do
       @category_one = create(:category)
