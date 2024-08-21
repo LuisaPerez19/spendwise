@@ -1,9 +1,12 @@
-import { Application } from "@hotwired/stimulus"
+import { Application } from "@hotwired/stimulus";
+import DateFilterController from "../controllers/date_filter_controller.js";
 
-const application = Application.start()
+const application = Application.start();
 
 // Configure Stimulus development experience
-application.debug = false
-window.Stimulus   = application
+application.debug = false;
+window.Stimulus = application;
 
-export { application }
+Stimulus.register("date-filter", DateFilterController);
+
+export { application };

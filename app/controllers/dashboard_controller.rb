@@ -14,12 +14,6 @@ class DashboardController < ApplicationController
                       else
                         0
                       end
-
-
-
-    # @total_expenses = Expense.total_amount_between(Date.new(2024, 7, 20), Date.new(2024, 7, 25))
-
-
     #total spend
     # Total earned
     # Filter per month

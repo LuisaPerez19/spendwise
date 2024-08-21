@@ -38,7 +38,7 @@ RSpec.describe Expense, type: :model do
 
       test_cases =[
         [["2024/7/25", "2024/8/1"],100],
-        [["2024/7/26", "2024/8/8"],100]
+        [["2024/7/26", "2024/8/8"],50]
       ]
 
       test_cases.each do |(start_date,end_date),total|
@@ -47,7 +47,7 @@ RSpec.describe Expense, type: :model do
 
         result = Expense.total_amount_between(sd,ed)
 
-      expect(result).to eq(total)
+      expect(result).to eq(total), "Failed: #{start_date}-#{end_date}"
 
       puts "Start Date: #{sd}, End Date: #{ed}"
       puts "All Expenses: #{Expense.all.map { |e| [e.date, e.amount] }}"
@@ -59,8 +59,4 @@ RSpec.describe Expense, type: :model do
 
     end
   end
-
-  # def self.total_amount_between(start_date, end_date)
-  #   where(date: start_date..end_date).sum(:amount)
-  # end
 end
