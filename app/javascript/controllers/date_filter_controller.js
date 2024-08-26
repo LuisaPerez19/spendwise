@@ -20,5 +20,18 @@ export default class extends Controller {
     this.fechTotalExpenses(selectedOption);
   }
 
-  fechTotalExpenses(dateRange) {}
+  fetchTotalExpenses(dateRange) {
+    fetch(`/dashboard?date_range=${dateRange}`, {
+      headers: {
+        "X-CSRF-Token": document
+          .querySelector("meta[name='csrf-token']")
+          .getAttribute("content"),
+      },
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        this.totalExpensesTarget.textContent = data.total_expenses;
+      });
+  }
 }
