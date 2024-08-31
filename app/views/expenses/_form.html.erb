@@ -1,7 +1,7 @@
 <div class="container">
   <h1>New Transaction</h1>
 
-  <%= simple_form_for @expense do |f| %>
+  <%= simple_form_for @expense, remote: true, html: { data: { action: "ajax:success->date-filter#refreshTotalExpenses" } }  do |f| %>
   <%= f.hidden_field :user_id, value: current_user.id  %>
   <%= f.input :title %>
   <%= f.input :amount %>

@@ -15,9 +15,9 @@ class DashboardController < ApplicationController
     #                     0
     #                   end
 
-
-    date_range = params[:date_range] || 'this_month'
-    @total_expenses = calculate_total_expenses(date_range)
+    @total_expenses = calculate_total_expenses
+    # date_range = params[:date_range] || 'this_month'
+    # @total_expenses = calculate_total_expenses(date_range)
 
     respond_to do |format|
       format.html
@@ -27,14 +27,17 @@ class DashboardController < ApplicationController
 
   private
 
-  def calculate_total_expenses(date_range)
-    date_today = Date.today
-    if params[:start_date] && params[:end_date]
+  def calculate_total_expenses
+    if params[:start_date].present? && params[:end_date].present?
       start_date = Date.parse(params[:start_date]) rescue nil
       end_date = Date.parse(params[:end_date]) rescue nil
-      Expense.total_amount_between(start_date, end_date) if start_date && end_date
-    elsif params[:date_range]
-      case params[:date_range]
+      return Expense.total_amount_between(start_date, end_date)
+    end
+
+    date_range = params[:date_range]
+    date_today = Date.today
+
+      case date_range
       when 'this_week'
         Expense.total_amount_between(date_today.beginning_of_week, date_today.end_of_week)
       when 'this_month'
@@ -54,6 +57,5 @@ class DashboardController < ApplicationController
       else
         0
       end
-    end
   end
 end
