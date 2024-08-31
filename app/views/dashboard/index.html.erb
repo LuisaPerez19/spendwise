@@ -1,31 +1,33 @@
-<div class="container">
+<div class="container"data-controller="date-filter">
   <h1>Welcome, <%= @user.email %>!</h1>
 
   <br>
 
   <div>
-    <%= form_tag dashboard_path, method: :get, class: "d-flex" do %>
+    <%= form_tag dashboard_path, method: :get, class: "d-flex", data: { action: "submit->date-filter#updateCustomRange" } do %>
       <input type="date"
             id="start_date"
             name="start_date"
             class="form-control"
             value="<%= params[:start_date] || '' %>"
-            placeholder="Start Date">
+            placeholder="Start Date"
+            data-date-filter-target="startDate">
       <input type="date"
             id="end_date"
             name="end_date"
             class="form-control"
             value="<%= params[:end_date] || '' %>"
-            placeholder="End Date">
+            placeholder="End Date"
+            data-date-filter-target="endDate">
       <%= submit_tag "Search", class: "btn btn-primary" %>
     <% end %>
   </div>
 
   <br>
 
-  <div data-controller="date-filter">
+  <div>
   <label for="date-filter">Filter by date:</label>
-  <select data-date-filter-target="dateFilter" data-action="change->date-filter#updateDateFilter">
+  <select id="date-filter" data-date-filter-target="dateFilter" data-action="change->date-filter#updateDateFilter">
     <option value="this_week">This week</option>
     <option value="this_month">This month</option>
     <option value="this_year">This year</option>
@@ -35,6 +37,7 @@
     <option value="q3">Q3</option>
     <option value="q4">Q4</option>
   </select>
+  </div>
 
   <br>
 
@@ -44,14 +47,14 @@
         <div class="card bg-light mb-3" style="width: 15rem;height: 120px;">
           <div class="card-body">
             <p class="card-text text-center">Total Expenses</p>
-            <p class="card-text text-center" data-date-filter-target="totalExpenses">£<%= @total_expenses %></p>
+            <p class="card-text text-center" data-date-filter-target="totalExpenses">£<%= number_with_precision(@total_expenses, precision: 2) %></p>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <%# <p>Total expenses: <span data-date-filter-target="totalExpenses"></span></p> %>
+
 </div>
 
 
