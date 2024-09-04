@@ -29,14 +29,20 @@
   <div>
   <label for="date-filter">Filter by date:</label>
   <select id="date-filter" data-date-filter-target="dateFilter" data-action="change->date-filter#updateDateFilter">
-    <option value="this_week">This week</option>
+    <option value="">Filter</option>
+    <% @date_ranges.each do |k,v| %>
+
+
+    <option value="<%=v%>"><%= k %></option >
+    <% end %>
+    <%# <option value="this_week">This week</option>
     <option value="this_month">This month</option>
     <option value="this_year">This year</option>
     <option value="last_week">Last week</option>
     <option value="q1">Q1</option>
     <option value="q2">Q2</option>
     <option value="q3">Q3</option>
-    <option value="q4">Q4</option>
+    <option value="q4">Q4</option> %>
   </select>
   </div>
 

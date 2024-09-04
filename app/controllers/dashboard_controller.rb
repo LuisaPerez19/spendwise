@@ -4,20 +4,12 @@ class DashboardController < ApplicationController
     @user = current_user
     @expenses = @user.expenses.order(created_at: :desc)
 
+    date_today = Time.zone.now
 
-
-    # start_date = Date.parse(params[:start_date]) rescue nil
-    # end_date = Date.parse(params[:end_date]) rescue nil
-
-    # @total_expenses = if start_date && end_date
-    #                     Expense.total_amount_between(start_date, end_date)
-    #                   else
-    #                     0
-    #                   end
+    @date_ranges = {"This Week" => "#{date_today.beginning_of_week.strftime('%Y-%m-%d')}|#{date_today.end_of_week.strftime('%Y-%m-%d')}"}
 
     @total_expenses = calculate_total_expenses
-    # date_range = params[:date_range] || 'this_month'
-    # @total_expenses = calculate_total_expenses(date_range)
+
 
     respond_to do |format|
       format.html
@@ -34,8 +26,11 @@ class DashboardController < ApplicationController
       return Expense.total_amount_between(start_date, end_date)
     end
 
+
+
+
     date_range = params[:date_range]
-    date_today = Date.today
+    date_today = Time.zone.now
 
       case date_range
       when 'this_week'

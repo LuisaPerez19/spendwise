@@ -12,7 +12,11 @@ export default class extends Controller {
     if (selectedOption === "") {
       return;
     }
-    this.fetchTotalExpenses(`date_range=${selectedOption}`);
+    const split = selectedOption.split("|");
+    this.startDateTarget.value = split[0];
+    this.endDateTarget.value = split[1];
+    this.updateCustomRange(event);
+    console.log(split);
   }
 
   updateCustomRange(event) {
