@@ -2,7 +2,7 @@ class DashboardController < ApplicationController
   before_action :authenticate_user!
   def index
     @user = current_user
-    @expenses = @user.expenses.order(created_at: :desc)
+    @expenses = @user.expenses.order(date: :desc)
 
     date_today = Time.zone.now
 
@@ -14,8 +14,8 @@ class DashboardController < ApplicationController
     end
 
     @date_ranges = {
-      "Last week" => "#{1.week.ago.beginning_of_week.strftime('%Y-%m-%d')}|#{1.week.ago.end_of_week.strftime('%Y-%m-%d')}",
-      "This Week" => "#{date_today.beginning_of_week.strftime('%Y-%m-%d')}|#{date_today.end_of_week.strftime('%Y-%m-%d')}",
+      "Last week" => "#{1.week.ago.beginning_of_week.strftime('%Y-%m-%d')}|#{(1.week.ago.end_of_week + 1.day).strftime('%Y-%m-%d')}",
+      "This Week" => "#{date_today.beginning_of_week.strftime('%Y-%m-%d')}|#{(date_today.end_of_week + 1).strftime('%Y-%m-%d')}",
       "This month" => "#{date_today.beginning_of_month.strftime('%Y-%m-%d')}|#{date_today.end_of_month.strftime('%Y-%m-%d')}",
       "This year" => "#{date_today.beginning_of_year.strftime('%Y-%m-%d')}|#{date_today.end_of_year.strftime('%Y-%m-%d')}",
       "Q1" => quarter_range(0),
