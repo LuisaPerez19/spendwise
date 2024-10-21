@@ -4,25 +4,36 @@
 
   <br>
 
-  <div>
-    <%= form_tag dashboard_path, method: :get, class: "d-flex", data: { action: "submit->date-filter#updateCustomRange" } do %>
-      <input type="date"
-            id="start_date"
-            name="start_date"
-            class="form-control"
-            value="<%= params[:start_date] || '' %>"
-            placeholder="Start Date"
-            data-date-filter-target="startDate">
-      <input type="date"
-            id="end_date"
-            name="end_date"
-            class="form-control"
-            value="<%= params[:end_date] || '' %>"
-            placeholder="End Date"
-            data-date-filter-target="endDate">
-      <%= submit_tag "Search", class: "btn btn-primary" %>
-    <% end %>
+  <div class="date-label-container d-flex align-items-center">
+
+    <p class="start-day mr-2"> Start date </p>
+    <p class="end-day ml-1"> End date </p>
   </div>
+
+    <div>
+      <%= form_tag dashboard_path, method: :get, class: "d-flex", data: { action: "submit->date-filter#updateCustomRange" } do %>
+      <div class="date-input-wrapper-start">
+        <input type="date"
+              id="start_date"
+              name="start_date"
+              class="form-control"
+              value="<%= params[:start_date] || '' %>"
+              placeholder="Start Date"
+              data-date-filter-target="startDate">
+      </div>
+      <div class="date-input-wrapper-end">
+        <input type="date"
+              id="end_date"
+              name="end_date"
+              class="form-control"
+              value="<%= params[:end_date] || '' %>"
+              placeholder="End Date"
+              data-date-filter-target="endDate">
+      </div>
+        <%= submit_tag "Search", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+
 
   <br>
 
@@ -54,21 +65,17 @@
 
 </div>
 
+  <div class="container">
 
+    <h2>Your Recent Expenses</h2>
 
-
-
-
-
-  <h2>Your Recent Expenses</h2>
-
-  <ul>
-    <% @expenses.each do |expense| %>
-      <li>
-        <%= expense.category.name %> - £<%= expense.amount %> on <%= expense.date.strftime("%B %d, %Y") %>
-      </li>
-    <% end %>
-  </ul>
-
+    <ul>
+      <% @expenses.each do |expense| %>
+        <li>
+          <%= expense.category.name %> - £<%= expense.amount %> on <%= expense.date.strftime("%B %d, %Y") %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 
 </div>
