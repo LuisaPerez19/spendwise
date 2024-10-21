@@ -2,7 +2,7 @@ class DashboardController < ApplicationController
   before_action :authenticate_user!
   def index
     @user = current_user
-    @expenses = @user.expenses.order(date: :desc)
+    @expenses = @user.expenses.order(date: :desc).firt(10)
 
     date_today = Time.zone.now
 
