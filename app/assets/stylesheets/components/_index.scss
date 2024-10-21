@@ -36,3 +36,22 @@
   color: white;
   border-radius: 1;
 }
+
+.start-day, .end-day {
+  font-weight: bold;
+}
+
+.end-day{
+  margin-left: 34rem;
+}
+
+.date-input-wrapper-end{
+  margin-left: 7rem;
+  width: 500px;
+  max-width: 100%;
+}
+
+.date-input-wrapper-start{
+  width: 500px;
+  max-width: 100%;
+}
