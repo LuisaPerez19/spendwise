@@ -6,7 +6,12 @@
   <%= f.input :title %>
   <%= f.input :amount %>
   <%= f.input :date %>
-  <%= f.association :category, label_method: :name, value_method: :id, include_blank: false %>
+  <%= f.association :category,
+                    collection: current_user.categories,
+                    label_method: :name,
+                    value_method: :id,
+                    include_blank: false %>
+  <%# <%= f.association :category, label_method: :name, value_method: :id, include_blank: false %>
 
   <%= f.submit "Submit now", class: "btn btn-primary" %>
   <%= link_to 'Back to Expenses', expenses_path, class: 'btn btn-primary mt-4 back' %>
