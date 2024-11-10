@@ -15,8 +15,8 @@ class Category < ApplicationRecord
     self.amount ||= 0
   end
 
-  def self.category_sum_amount
-    sum(:amount)
+  def self.category_sum_amount(user)
+    where(user_id: user.id).sum(:amount)
   end
 
 end

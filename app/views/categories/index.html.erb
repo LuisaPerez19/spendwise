@@ -14,7 +14,7 @@
 </div>
 
 <div>
-  <h1>Total Spent: £<%= Category.category_sum_amount %></h1>
+  <h1>Total Spent: £<%= Category.category_sum_amount(current_user) %></h1>
 </div>
 
 <%= link_to 'New Category', new_category_path  %>
