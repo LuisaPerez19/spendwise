@@ -25,6 +25,7 @@ export default class extends Controller {
     const endDate = this.endDateTarget.value;
     if (startDate && endDate) {
       this.fetchTotalExpenses(`start_date=${startDate}&end_date=${endDate}`);
+      this.updateExpenseList(`start_date=${startDate}&end_date=${endDate}`);
     }
   }
 
@@ -43,6 +44,26 @@ export default class extends Controller {
         this.totalExpensesTarget.textContent = `£${data.total_expenses.toFixed(
           2
         )}`;
+      })
+      .catch((error) => console.error("Error:", error));
+  }
+
+  updateExpenseList(queryString) {
+    fetch(`/dashboard/recent_expenses?${queryString}`, {
+      headers: {
+        Accept: "text/html",
+        "X-CSRF-Token": document
+          .querySelector("meta[name='csrf-token']")
+          .getAttribute("content"),
+      },
+      method: "GET",
+    })
+      .then((response) => response.text())
+      .then((html) => {
+        const recentExpensesSection = document.querySelector(
+          ".container h2 + ul"
+        );
+        recentExpensesSection.innerHTML = html;
       })
       .catch((error) => console.error("Error:", error));
   }

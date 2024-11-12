@@ -13,5 +13,8 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: 'dashboard#index'
 
+  resources :dashboard, only: [:index] do
+    get 'recent_expenses', on: :collection
+  end
 
 end
