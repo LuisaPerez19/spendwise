@@ -1,0 +1,7 @@
+<ul>
+  <% @expenses.each do |expense| %>
+    <li>
+      <%= expense.category.name %> - <%= expense.title %>- £<%= expense.amount %> on <%= expense.date.strftime("%B %d, %Y") %>
+    </li>
+  <% end %>
+</ul>

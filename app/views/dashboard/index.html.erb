@@ -36,15 +36,17 @@
 
   <br>
 
-  <div>
-  <label for="date-filter">Filter by date:</label>
-  <select id="date-filter" data-date-filter-target="dateFilter" data-action="change->date-filter#updateDateFilter">
-    <% @date_ranges.each do |k,v| %>
-    <option value="<%= v %>"><%= k %></option >
-    <% end %>
+  <%# <%= turbo_frame_tag "recent_expenses" do %>
+    <div>
+    <label for="date-filter">Filter by date:</label>
+    <select id="date-filter" data-date-filter-target="dateFilter" data-action="change->date-filter#updateDateFilter">
+      <% @date_ranges.each do |k,v| %>
+      <option value="<%= v %>"><%= k %></option >
+      <% end %>
 
-  </select>
-  </div>
+    </select>
+    </div>
+  <%# <% end %>
 
   <br>
 
@@ -64,17 +66,22 @@
 
 </div>
 
-  <div class="container">
+  <%# turbo frame %>
 
-    <h2>Your Recent Expenses</h2>
+  <%# <%= turbo_frame_tag "recent_expenses" do %>
 
-    <ul>
-      <% @expenses.each do |expense| %>
-        <li>
-          <%= expense.category.name %> - £<%= expense.amount %> on <%= expense.date.strftime("%B %d, %Y") %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+ <div class="container">
+
+      <h2>Your Recent Expenses</h2>
+
+      <ul>
+        <% @expenses.each do |expense| %>
+          <li>
+            <%= expense.category.name %> - <%= expense.title %> - £<%= expense.amount %> on <%= expense.date.strftime("%B %d, %Y") %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <%# <% end %>
 
 </div>
