@@ -68,20 +68,12 @@
 
   <%# turbo frame %>
 
-  <%# <%= turbo_frame_tag "recent_expenses" do %>
+  <div class="container" data-turbo-frame="recent_expenses">
 
- <div class="container">
+    <h2>Your Recent Expenses</h2>
 
-      <h2>Your Recent Expenses</h2>
+    <%= render partial: "recent_expenses" %>
 
-      <ul>
-        <% @expenses.each do |expense| %>
-          <li>
-            <%= expense.category.name %> - <%= expense.title %> - £<%= expense.amount %> on <%= expense.date.strftime("%B %d, %Y") %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-  <%# <% end %>
+  </div>
 
 </div>

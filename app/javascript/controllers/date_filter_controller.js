@@ -16,7 +16,6 @@ export default class extends Controller {
     this.startDateTarget.value = split[0];
     this.endDateTarget.value = split[1];
     this.updateCustomRange(event);
-    console.log(split);
   }
 
   updateCustomRange(event) {
@@ -61,7 +60,7 @@ export default class extends Controller {
       .then((response) => response.text())
       .then((html) => {
         const recentExpensesSection = document.querySelector(
-          ".container h2 + ul"
+          "[data-turbo-frame='recent_expenses']"
         );
         recentExpensesSection.innerHTML = html;
       })
