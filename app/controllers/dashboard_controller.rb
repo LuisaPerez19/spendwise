@@ -9,7 +9,7 @@ class DashboardController < ApplicationController
     respond_to do |format|
       format.html
       format.json {render json: {total_expenses: @total_expenses}}
-      format.html { render_recent_expenses }
+      # format.html { render_recent_expenses }
     end
   end
 
