@@ -1,82 +1,78 @@
 <div class="container">
+
   <h1>Welcome, <%= @user.username %>!</h1>
 
   <br>
 
   <div class="date-label-container d-flex align-items-center">
-
     <p class="start-day mr-2"> Start date </p>
     <p class="end-day ml-1"> End date </p>
   </div>
 
-  <%= form_tag dashboard_path, method: :get, class: "d-flex", data:{turbo_frame:"expenses", turbo_action: "advance"} do %>
-    <div>
-      <div class="date-input-wrapper-start">
-        <input type="date"
-              id="start_date"
-              name="start_date"
-              class="form-control"
-              value="<%= params[:start_date] || '' %>"
-              placeholder="Start Date"
-              data-date-filter-target="startDate">
+  <%= turbo_frame_tag "date_filter_form" do %>
+    <%= form_tag dashboard_path, method: :get, class: "d-flex", data:{turbo_frame:"expenses", turbo_action: "advance"} do %>
+      <div>
+        <div class="date-input-wrapper-start">
+          <input type="date"
+                id="start_date"
+                name="start_date"
+                class="form-control"
+                value="<%= params[:start_date] || '' %>"
+                placeholder="Start Date"
+                data-date-filter-target="startDate">
+        </div>
+        <div class="date-input-wrapper-end">
+          <input type="date"
+                id="end_date"
+                name="end_date"
+                class="form-control"
+                value="<%= params[:end_date] || '' %>"
+                placeholder="End Date"
+                data-date-filter-target="endDate">
+        </div>
+          <%= submit_tag "Search", class: "btn btn-primary" %>
+
       </div>
-      <div class="date-input-wrapper-end">
-        <input type="date"
-              id="end_date"
-              name="end_date"
-              class="form-control"
-              value="<%= params[:end_date] || '' %>"
-              placeholder="End Date"
-              data-date-filter-target="endDate">
-      </div>
-        <%= submit_tag "Search", class: "btn btn-primary" %>
 
-    </div>
-
-
-      <br>
+        <br>
 
       <div>
-      <label for="date-filter">Filter by date:</label>
-      <select id="date-filter" name="date_filter" data-date-filter-target="dateFilter" data-action="change->date-filter#updateDateFilter">
-        <option value=""> </option>
-
-        <% @date_ranges.each do |k,v| %>
-        <option value="<%= k %>" data-filter="<%= v %>"<%= params[:date_filter] == k ? "selected" : "" %>><%= k %></option >
-        <% end %>
-
-      </select>
+        <label for="date-filter">Filter by date:</label>
+        <select id="date-filter" name="date_filter" onchange="this.form.submit()">
+          <option value=""> </option>
+          <% @date_ranges.each do |k,v| %>
+          <option
+            value="<%= k %>"
+            data-filter="<%= v %>"
+            <%= params[:date_filter] == k ? "selected" : "" %>>
+            <%= k %>
+          </option >
+          <% end %>
+        </select>
       </div>
-
     <% end %>
+  <% end %>
 
   <br>
 
   <%= turbo_frame_tag "expenses" do %>
-
-  <div class="container">
-    <div class="row mt-5">
-      <div class="col-md-4">
-        <div class="card bg-light mb-3" style="width: 15rem;height: 120px;">
-          <div class="card-body">
-            <p class="card-text text-center">Total Expenses</p>
-            <p class="card-text text-center" data-date-filter-target="totalExpenses">£<%= number_with_precision(@total_expenses, precision: 2) %></p>
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-md-4">
+          <div class="card bg-light mb-3" style="width: 15rem;height: 120px;">
+            <div class="card-body">
+              <p class="card-text text-center">Total Expenses</p>
+              <p class="card-text text-center">£<%= number_with_precision(@total_expenses, precision: 2) %></p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
+    <div class="container" >
+      <h2>Your Recent Expenses</h2>
+      <%= render partial: "recent_expenses" %>
+    </div>
 
-
-
-
-  <div class="container" >
-
-    <h2>Your Recent Expenses</h2>
-
-    <%= render partial: "recent_expenses" %>
-
-  </div>
   <% end %>
 </div>
