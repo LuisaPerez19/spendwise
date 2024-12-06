@@ -1,12 +1,12 @@
-<div class="container">
+<div class="container"data-controller="date-filter">
 
   <h1>Welcome, <%= @user.username %>!</h1>
 
   <br>
 
   <div class="date-label-container d-flex align-items-center">
-    <p class="start-day mr-2"> Start date </p>
-    <p class="end-day ml-1"> End date </p>
+    <p class="start-day mr-1"> Start date </p>
+    <%# <p class="end-day ml-1"> End date </p> %>
   </div>
 
   <%= turbo_frame_tag "date_filter_form" do %>
@@ -38,7 +38,7 @@
 
       <div>
         <label for="date-filter">Filter by date:</label>
-        <select id="date-filter" name="date_filter" onchange="this.form.submit()">
+        <select id="date-filter" name="date_filter"  data-date-filter-target="dateFilter" data-action="change->date-filter#updateDateFilter">
           <option value=""> </option>
           <% @date_ranges.each do |k,v| %>
           <option
