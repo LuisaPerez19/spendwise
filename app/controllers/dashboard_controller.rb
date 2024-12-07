@@ -25,14 +25,6 @@ class DashboardController < ApplicationController
   end
 
   def apply_date_filters
-    # if params[:date_filter].present?
-    #   if @date_ranges.key?(params[:date_filter])
-    #     start_date, end_date = @date_ranges[params[:date_filter]].split('|')
-    #     params[:start_date] = start_date
-    #     params[:end_date] = end_date
-    #   end
-    # end
-
     if (start_date = check_and_parse_date(:start_date))
       @expenses = @expenses.where("date > ?", start_date)
     end

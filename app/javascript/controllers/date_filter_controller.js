@@ -11,6 +11,9 @@ export default class extends Controller {
     const selectedOption = this.dateFilterTarget.value;
     console.log(selectedOption);
     if (selectedOption === "") {
+      this.startDateTarget.value = "";
+      this.endDateTarget.value = "";
+      this.element.querySelector("form").requestSubmit();
       return;
     }
 
@@ -18,9 +21,9 @@ export default class extends Controller {
       `option[value="${selectedOption}"]`
     );
 
-    // Get the date range from the data-filter attribute
+    // Date range from the data-filter attribute
     const dateRangeString = selectedOptionElement.dataset.filter;
-    console.log("Date range string:", dateRangeString);
+    // console.log("Date range string:", dateRangeString);
 
     const split = dateRangeString.split("|");
     this.startDateTarget.value = split[0];
