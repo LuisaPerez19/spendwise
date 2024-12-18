@@ -4,17 +4,15 @@ services:
     tty: true
     stdin_open: true
     platform: linux/x86_64
-    command: sh -c "sleep 2 && rm -f tmp/pids/server.pid && bundle install && yarn install && bundle exec rails db:migrate && ./bin/dev"
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - '3000:3000'
-    volumes:
-      - .:/app
-    env_file: ./.env
+    env_file:
+      - .env
     environment:
-      RAILS_ENV: development
+      RAILS_ENV: production
       DATABASE_HOST: database
       DATABASE_USER: postgres
       DATABASE_PASSWORD: spend
