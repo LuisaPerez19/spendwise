@@ -1,23 +1,22 @@
 class DashboardController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_date_ranges
   before_action :set_filtered_expenses, only: [:index, :recent_expenses]
   def index
-    @date_ranges = date_ranges
     @total_expenses = @expenses.sum(:amount)
-
-
-    respond_to do |format|
-      format.html
-      format.json {render json: {total_expenses: @total_expenses}}
-      format.html { render_recent_expenses }
-    end
   end
 
   def recent_expenses
-    render_recent_expenses
+    render  partial: "recent_expenses",
+            locals: { expenses: @expenses },
+            turbo_frame: :recent_expenses
   end
 
   private
+
+  def set_date_ranges
+    @date_ranges = date_ranges
+  end
 
   def set_filtered_expenses
     @user = current_user
@@ -38,12 +37,6 @@ class DashboardController < ApplicationController
   def check_and_parse_date(param_name)
     return nil unless params[param_name].present?
     Date.parse(params[param_name]) rescue nil
-  end
-
-  def render_recent_expenses
-    render  partial: "recent_expenses",
-            locals: { expenses: @expenses },
-            turbo_frame: :recent_expenses
   end
 
 end
