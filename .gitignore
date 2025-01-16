@@ -37,3 +37,4 @@
 .env
 
 /config/credentials/production.key
+/config/secrets/*
