@@ -13,9 +13,9 @@ services:
       - .env
     environment:
       RAILS_ENV: production
-      DATABASE_HOST: database
-      DATABASE_USER: postgres
-      DATABASE_PASSWORD: spend
+      DB_HOST: spendwise-db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: spend
       DISABLE_DATABASE_ENVIRONMENT_CHECK: 1
       BIND: 0.0.0.0
       DOCKER: 1

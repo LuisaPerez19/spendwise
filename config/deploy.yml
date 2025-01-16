@@ -39,6 +39,7 @@ registry:
 env:
   secret:
     - RAILS_MASTER_KEY
+    - POSTGRES_PASSWORD
   clear:
     SOLID_QUEUE_IN_PUMA: true
 
@@ -71,6 +72,7 @@ builder:
 # hitting 404 on in-flight requests. Combines all files from new and old
 # version inside the asset_path.
 #
+
 asset_path: /app/public/assets
 
 # Configure rolling deploys by setting a wait time between batches of restarts.
@@ -97,7 +99,8 @@ accessories:
       # - config/mysql/production.cnf:/etc/mysql/my.cnf
       - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
     directories:
-     - data:/var/lib/postgresql/data
+      - data:/var/lib/postgresql/data
+
 #   redis:
 #     image: redis:7.0
 #     host: 192.168.0.2
