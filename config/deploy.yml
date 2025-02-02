@@ -9,12 +9,6 @@ image: luisaw3/spendwise
 servers:
   web:
     - 68.183.43.182
-    healthcheck:
-      path: "/up"
-      port: 80
-      interval: 10s
-      timeout: 10s
-      start_period: 30s
   # job:
   #   hosts:
   #     - 192.168.0.1
