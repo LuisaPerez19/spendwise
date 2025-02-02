@@ -82,6 +82,7 @@ test:
 production:
   <<: *default
   database: spendwise_production
-  username:  <%= ENV.fetch("POSTGRES_USER") {'spendwise'} %>
+  username: <%= ENV.fetch("POSTGRES_USER") {'postgres'} %>
+  # username:  <%= ENV.fetch("POSTGRES_USER") {'spendwise'} %>
   password: <%= ENV["POSTGRES_PASSWORD"] %>
   host: spendwise-db
