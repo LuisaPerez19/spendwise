@@ -9,7 +9,6 @@ image: luisaw3/spendwise
 servers:
   web:
     - 68.183.43.182
-
     healthcheck:
       path: "/up"
       port: 80
