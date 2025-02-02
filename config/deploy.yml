@@ -4,17 +4,18 @@ service: spendwise
 # Name of the container image.
 image: luisaw3/spendwise
 
-# # Add healthcheck
-#   web:
-#     healthcheck:
-#       interval: 10s
-#       timeout: 5s
-#       start_period: 10s
 
 # Deploy to these servers.
 servers:
   web:
     - 68.183.43.182
+
+healthcheck:
+  path: "/up"
+  port: 80
+  interval: 10s
+  timeout: 10s
+  start_period: 30s
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -84,10 +85,9 @@ asset_path: /app/public/assets
 
 # Configure rolling deploys by setting a wait time between batches of restarts.
 #
-boot:
-  timeout: 60
-#   limit: 10 # Can also specify as a percentage of total hosts, such as "25%"
-#   wait: 2
+# boot:
+# #   limit: 10 # Can also specify as a percentage of total hosts, such as "25%"
+# #   wait: 2
 
 # Use accessory services (secrets come from .kamal/secrets).
 #
