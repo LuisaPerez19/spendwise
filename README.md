@@ -1,24 +1,18 @@
-# README
+# SpendWise - Expense Tracker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+SpendWise is a dynamic Ruby on Rails expense tracker app built to help users manage their finances efficiently. Using Turbo Frames and Stimulus for seamless interactivity, the app provides a smooth, responsive user experience. The app is containerised with Docker and deployed to a shared DigitalOcean server using Kamal.
 
-Things you may want to cover:
+## Technologies Used
 
-* Ruby version
+- Ruby, Ruby on Rails
+- Docker, Bootstrap
+- JavaScript, Stimulus, Turbo Frames
+- HTML, SCSS
 
-* System dependencies
+* Ruby version: 3.1.2
+* Rails version:  **7.0.8**
+* Database: **PostgreSQL**
 
-* Configuration
+* Run bundle install
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Database: Run Rails db:create and rails db:migrate to start a database
